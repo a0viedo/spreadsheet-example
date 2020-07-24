@@ -1,0 +1,21 @@
+service: spreadsheet-example
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment: ${file(.env.yml):}
+
+functions:
+  write:
+    handler: handler.write
+    events:
+      - http:
+          path: /write
+          method: POST
+  read:
+    handler: handler.read
+    events:
+      - http:
+          path: /read
+          method: GET
+
